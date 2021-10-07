@@ -1,0 +1,22 @@
+{
+    "name": "officegest/officegest-send-sms",
+    "authors": [
+        {
+            "name": "Stephane Soares",
+            "email": "stephane.soares@officegest.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "OfficegestSms\\": "src/"
+        }
+    },
+    "require": {},
+    "extra": {
+        "laravel": {
+            "providers": [
+                "OfficegestSms\\OfficegestSmsServiceProvider"
+            ]
+        }
+    }
+}
