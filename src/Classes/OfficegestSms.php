@@ -4,7 +4,6 @@ namespace OfficegestSms\Classes;
 
 class OfficegestSms
 {
-
     public function __construct()
     {
         $this->url = config('officegest-sms.url');
@@ -22,32 +21,24 @@ class OfficegestSms
     public function send(string $phone_number, string $text)
     {
         $this->isActive();
-
         $auth_data = [
             'username' => $this->user,
             'password' => $this->api_key
         ];
-
-
-
         $mobile_phone = (!empty($phone_number) && strpos($phone_number, '+') === false) ? '+351.' . $phone_number : $phone_number;
         $post_data = array(
             'mobile_phone' => $mobile_phone,
             'sms_text' => $text,
         );
         $url = $this->url . '/api/utils/send_sms';
-
-
         $resposta = self::CallAPI('POST', $url, $post_data, $auth_data);
         $result = json_decode($resposta);
-        dd($resposta);
-        return true;
+        return response()->json($result, 200);
     }
 
     public static function CallAPI($method, $url, $data = false, $auth = [])
     {
         $curl = curl_init();
-
         switch ($method) {
             case "POST":
                 curl_setopt($curl, CURLOPT_POST, 1);
@@ -74,12 +65,9 @@ class OfficegestSms
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
 
         $result = curl_exec($curl);
-
         curl_close($curl);
-
         return $result;
     }
-
 
     public static function build_post_fields($data, $existingKeys = '', &$returnArray = [])
     {
