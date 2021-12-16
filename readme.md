@@ -8,11 +8,11 @@ This is a laravel package to send sms using officegest.
 
 Laravel < 8.0 Add ServiceProvider to your `config/app.php`
 
-    Officegest\OfficegestSms\OfficegestSmsServiceProvider::class,
+    OfficegestSms\OfficegestSmsServiceProvider::class,
 
 If you need to publish the config file for this package. This will add the file `config/officegest-sms.php`, where you can configure this package.
 
-    $ php artisan vendor:publish --provider="Officegest\OfficegestSms\OfficegestSmsServiceProvider" --tag=config
+    $ php artisan vendor:publish --provider="OfficegestSms\OfficegestSmsServiceProvider" --tag=config
 
 You need add this variables to your .env
 
